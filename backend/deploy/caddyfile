@@ -1,0 +1,6 @@
+your-domain.duckdns.org {
+    reverse_proxy 127.0.0.1:5032
+    tls {
+        dns duckdns {DUCKDNS_TOKEN}  # Replace {DUCKDNS_TOKEN} with your DuckDNS token
+    }
+}

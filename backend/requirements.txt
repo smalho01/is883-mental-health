@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+llama-cpp-python
+pydantic
+huggingface-hub
+datasets
+transformers
+diskcache
+accelerate
+tiktoken
+torch 
+torchvision 
+torchaudio
