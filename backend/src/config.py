@@ -12,8 +12,6 @@ CHATBOT_TOKENIZER = "victunes/TherapyBeagle-11B-v2"
 DIAGNOSIS_MODEL = 'Tianlin668/MentalBART'
 SUMMARY_MODEL = "Mr-Vicky-01/Bart-Finetuned-conversational-summarization"
 
-
-
 # Server Configuration
 SERVER_HOST = "0.0.0.0"
 SERVER_PORT = 5032

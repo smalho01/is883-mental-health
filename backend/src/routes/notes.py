@@ -5,20 +5,20 @@ from ..services.summary_service import generate_conversation_summary
 
 router = APIRouter()
 
-@router.get("/notes", response_model=NotesResponse)
-async def patient_notes_endpoint(user: User):
+@router.get("/notes/{user_id}", response_model=NotesResponse)
+async def patient_notes_endpoint(user_id: str):
     try:
-        if user.id not in userData:
+        if user_id not in userData:
             raise HTTPException(status_code=404, detail="User not found")
         
-        generate_conversation_summary(userData[user.id])
+        generate_conversation_summary(userData[user_id])
         return {
-            "name": userData[user.id].name,
-            "pronouns": userData[user.id].pronouns,
-            "emotion": userData[user.id].emotion,
-            "summary": userData[user.id].summary,
-            "diagnosis": userData[user.id].diagnosis,
-            "conversation": userData[user.id].conversation
+            "name": userData[user_id].name,
+            "pronouns": userData[user_id].pronouns,
+            "emotion": userData[user_id].emotion,
+            "summary": userData[user_id].summary,
+            "diagnosis": userData[user_id].diagnosis,
+            "conversation": userData[user_id].conversation
         }
     
     except Exception as e:

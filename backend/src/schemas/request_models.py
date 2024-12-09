@@ -8,6 +8,9 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     response: str
 
+class ConversationResponse(BaseModel):
+    conversation: List[Dict]
+
 class NotesResponse(BaseModel):
     name: str
     pronouns: str

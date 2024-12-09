@@ -26,7 +26,7 @@ class ModelManager:
         try:
             print("Loading models...")
             self._models = {
-                'chatbot_tokenizer': AutoTokenizer.from_pretrained(CHATBOT_TOKENIZER),
+                'chatbot_tokenizer': AutoTokenizer.from_pretrained("victunes/TherapyBeagle-11B-v2"),
                 'therapy_chatbot': Llama.from_pretrained(
                     repo_id=THERAPY_CHATBOT_MODEL,
                     filename=THERAPY_CHATBOT_FILE,

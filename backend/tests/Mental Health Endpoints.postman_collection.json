@@ -26,11 +26,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:5032/about",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/about",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
 						"about"
 					]
@@ -50,6 +50,7 @@
 							"});\r",
 							"\r",
 							"var jsonData = pm.response.json();\r",
+							"pm.variables.set(\"mental_health_chatbot_user_id\", jsonData.id);\r",
 							"pm.globals.set(\"mental_health_chatbot_user_id\", jsonData.id);\r",
 							""
 						],
@@ -71,14 +72,33 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5032/user/create",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/user/create",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
 						"user",
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Conversation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/chat/{{mental_health_chatbot_user_id}}",
+					"host": [
+						"{{mental_healh_url}}"
+					],
+					"port": "{{mental_health_port}}",
+					"path": [
+						"chat",
+						"{{mental_health_chatbot_user_id}}"
 					]
 				}
 			},
@@ -105,7 +125,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"{{mental_health_chatbot_user_id}}\",\r\n    \"message\": \"I don't know, I can't get myself to work on my homework or even get out of bed most days\"\r\n}",
+					"raw": "{\r\n    \"user_id\": \"{{mental_health_chatbot_user_id}}\",\r\n    \"message\": \"Hi, I've been feeling very low lately and I don't know how to feel better\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,11 +133,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5032/chat",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/chat",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
 						"chat"
 					]
@@ -154,11 +174,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5032/chat",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/chat",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
 						"chat"
 					]
@@ -187,7 +207,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": \"{{mental_health_chatbot_user_id}}\",\r\n    \"message\": \"Well, I mean... I just really hate everything in my life right now, sometimes I think it'd be better if I killed myself\"\r\n}",
+					"raw": "{\r\n    \"user_id\": \"{{mental_health_chatbot_user_id}}\",\r\n    \"message\": \"Well, I mean... I just really hate everything in my life right now, sometimes I think it'd be better if I killed myselfjhjjjhj\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -195,11 +215,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5032/chat",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/chat",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
 						"chat"
 					]
@@ -231,7 +251,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"{{mental_health_chatbot_user_id}}\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -239,13 +259,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5032/notes",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/notes/{{mental_health_chatbot_user_id}}",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
-						"notes"
+						"notes",
+						"{{mental_health_chatbot_user_id}}"
 					]
 				}
 			},
@@ -278,7 +299,7 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -290,14 +311,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5032/user/delete",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/user",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
-						"user",
-						"delete"
+						"user"
 					]
 				}
 			},
@@ -330,7 +350,7 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -342,14 +362,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5032/user/delete",
+					"raw": "{{mental_healh_url}}:{{mental_health_port}}/user",
 					"host": [
-						"localhost"
+						"{{mental_healh_url}}"
 					],
-					"port": "5032",
+					"port": "{{mental_health_port}}",
 					"path": [
-						"user",
-						"delete"
+						"user"
 					]
 				}
 			},
@@ -380,8 +399,18 @@
 	],
 	"variable": [
 		{
-			"key": "user_id",
-			"value": "<user_id will fill here>",
+			"key": "smental_health_chatbot_user_id",
+			"value": "<user_id>",
+			"type": "string"
+		},
+		{
+			"key": "mental_healh_url",
+			"value": "73.47.65.103",
+			"type": "string"
+		},
+		{
+			"key": "mental_health_port",
+			"value": "5032",
 			"type": "string"
 		}
 	]

@@ -26,8 +26,8 @@ def generate_conversation_summary(user_data):
 
     # Prepare summary prompt
     summary_prompt = f"""
-        name: {user_data.name},
-        pronouns: {user_data.pronouns},
+        {user_data.name},
+
         summary: {user_data.summary},
         input: {user_messages_text}
     """

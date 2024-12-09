@@ -10,9 +10,7 @@ def generate_diagnosis(user_data: UserData) -> str:
     diagnosis_model = models['diagnosis_model']
 
     diagnosis_prompt = f"""
-        name: {user_data.name},
-        pronouns: {user_data.pronouns},
-        input: {user_data.summary},
+        {user_data.summary},
     """
 
     # Prepare the input for the diagnosis model

@@ -12,23 +12,26 @@ userData = {}
 async def create_user(user: UserCreateRequest):
     # Instantiate UUID
     userId = str(uuid.uuid4())
-    
-    userData[userId] = UserData(
-        id = userId,
-        summary = "",
-        diagnosis = "",
-        emotion = user.emotion,
-        name = user.name,
-        pronouns = user.pronouns,
-        last_summary_index = 0,
-        conversation = [{
-            "role": "assistant",
-            "content": f"Hi {user.name}, how are you feeling today?"
-        }]
-    )
-    return userData[userId]
 
-@router.post("/user/delete", response_model=dict)
+    if user and user.name and user.emotion and user.pronouns:    
+        userData[userId] = UserData(
+            id = userId,
+            summary = "",
+            diagnosis = "",
+            emotion = user.emotion,
+            name = user.name,
+            pronouns = user.pronouns,
+            last_summary_index = 0,
+            conversation = [{
+                "role": "assistant",
+                "content": f"Hi {user.name}, how are you feeling today?"
+            }]
+        )
+        return userData[userId]
+    else:
+        raise HTTPException(status_code=422, detail=f"{user} could not be created")
+
+@router.delete("/user", response_model=dict)
 async def reset_conversation(user: User):
     if user.id in userData:
         del userData[user.id]

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from ..models.model_loader import ModelManager
-from ..schemas.request_models import ChatRequest, ChatResponse, UserData
+from ..schemas.request_models import ChatRequest, ChatResponse, ConversationResponse, UserData
 from ..services.summary_service import generate_conversation_summary
 from ..routes.user import userData
 from ..utils.token_counts import count_llama_tokens
@@ -8,9 +8,19 @@ from ..utils.crisis import CrisisResourceManager  # New import
 
 router = APIRouter()
 
+@router.get("/chat/{user_id}", response_model=ConversationResponse)
+async def get_chat_endpoint(user_id: str):
+        print(user_id)
+    # Get or create conversation history for this user
+        if user_id not in userData:
+            raise HTTPException(status_code=404, detail=f"{user_id} not found")
+        else:
+            return {"conversation": userData[user_id].conversation}
+
+
 @router.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest):
-    try:
+    # try:
         model_manager = ModelManager()
         models = model_manager.get_models()
         therapy_chatbot = models['therapy_chatbot']
@@ -57,6 +67,8 @@ async def chat_endpoint(request: ChatRequest):
             context_messages = [system_message, system_summary_message]
             context_messages.extend(userData[request.user_id].conversation[userData[request.user_id].last_summary_index + 1:])
 
+            context_messages = [msg for msg in context_messages if "🚨 Crisis Support Alert 🚨" not in msg.get('content', '')]
+
             new_user_message = {
                 "role": "user",
                 "content": request.message
@@ -64,7 +76,7 @@ async def chat_endpoint(request: ChatRequest):
 
             context_messages.append(new_user_message)
 
-            if count_llama_tokens(context_messages, chatbot_tokenizer) > 900:
+            if count_llama_tokens(context_messages, chatbot_tokenizer) > 850:
                 generate_conversation_summary(userData[request.user_id])
 
                 system_summary_message = {
@@ -97,5 +109,6 @@ async def chat_endpoint(request: ChatRequest):
         
             return {"response": model_response}
     
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    # except Exception as e:
+    #     print(e)
+        # raise HTTPException(status_code=500, detail=str(e))
