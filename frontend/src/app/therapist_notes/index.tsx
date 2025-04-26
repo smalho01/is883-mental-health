@@ -13,7 +13,7 @@ interface TherapistNote {
   conversation: Message[];
 }
 
-const BASE_URL = "http://73.47.65.103:5032"
+const BASE_URL = "http://24.61.52.129:5032"
 const NOTES_URL = "/notes"
 
 export default function TherapistNotesPage() {

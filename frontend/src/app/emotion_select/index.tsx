@@ -4,7 +4,7 @@ import { Heading } from "../../components";
 import UserEmotionDisplay from "../../components/UserEmotionDisplay";
 import React, { Suspense } from "react";
 
-const BASE_URL = "http://73.47.65.103:5032"
+const BASE_URL = "http://24.61.52.129:5032"
 const USER_CREATE_URL = "/user/create"
 
 const colorClasses = {

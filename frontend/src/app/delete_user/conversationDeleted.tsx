@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 export default function ConversationDeletedText() {
 
-  const BASE_URL = "http://73.47.65.103:5032"
+  const BASE_URL = "http://24.61.52.129:5032"
   const CHAT_URL = "/user"  
  
   const [userid, setUserid] = useState('');

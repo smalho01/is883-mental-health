@@ -28,12 +28,13 @@ async def chat_endpoint(request: ChatRequest):
 
         system_message = {
             "role": "system",
-            "content": f"You are a certified therapist speaking with a patient named {userData[request.user_id].name} " +
-            f"with pronouns {userData[request.user_id].name}. They are currenlty feeling {userData[request.user_id].name}"
-            "Your job is to help them understand and cope with their mental health issues. "
-            "Respond compassionately and conversationally as a human therapist would. "
-            "Use the conversation summary as context when needed."
+            "content": f"You are a compassionate and certified therapist. You are speaking with a patient named {userData[request.user_id].name} " +
+                    f"who uses {userData[request.user_id].pronouns} pronouns. They are currently feeling {userData[request.user_id].emotion}. " +
+                    "Your role is to help them understand and cope with their mental health challenges. " +
+                    "Respond conversationally and empathetically as a human therapist would, considering their feelings and context. " +
+                    "Use the provided conversation summary for additional context when needed."
         }
+
 
         # Get or create conversation history for this user
         if request.user_id not in userData:

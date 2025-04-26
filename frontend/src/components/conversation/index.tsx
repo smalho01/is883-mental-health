@@ -20,7 +20,7 @@ interface ConversationProps {
   autoScroll?: boolean;
 }
 
-const BASE_URL = "http://73.47.65.103:5032";
+const BASE_URL = "http://24.61.52.129:5032";
 const CHAT_URL = "/chat";
 
 const getInitialMessages = async (user_id: string): Promise<Message[]> => {
